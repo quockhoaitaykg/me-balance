@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -11,6 +10,7 @@ import {
   Form,
   Input,
   Switch,
+  Checkbox,
 } from "antd";
 import signinbg from "../assets/images/img-signin.jpg";
 import {
@@ -159,33 +159,37 @@ export default class SignIn extends Component {
                 lg={{ span: 6, offset: 2 }}
                 md={{ span: 12 }}
               >
-                <Title className="mb-15">Sign In</Title>
+                <Title className="mb-15">Sign Up</Title>
                 <Title className="font-regular text-muted" level={5}>
-                  Enter your email and password to sign in
+                  Enter your email and password to sign up
                 </Title>
                 <Form
+                  name="basic"
+                  initialValues={{ remember: true }}
                   onFinish={onFinish}
                   onFinishFailed={onFinishFailed}
-                  layout="vertical"
                   className="row-col"
                 >
                   <Form.Item
-                    className="username"
-                    label="Email"
-                    name="email"
+                    name="Name"
                     rules={[
                       {
                         required: true,
-                        message: "Please input your email!",
+                        message: "Please input your username!",
                       },
                     ]}
                   >
-                    <Input placeholder="Email" />
+                    <Input placeholder="Name" />
                   </Form.Item>
-
                   <Form.Item
-                    className="username"
-                    label="Password"
+                    name="email"
+                    rules={[
+                      { required: true, message: "Please input your email!" },
+                    ]}
+                  >
+                    <Input placeholder="email" />
+                  </Form.Item>
+                  <Form.Item
                     name="password"
                     rules={[
                       {
@@ -194,31 +198,31 @@ export default class SignIn extends Component {
                       },
                     ]}
                   >
-                    <Input placeholder="Password" />
+                    <Input placeholder="Passwoed" />
                   </Form.Item>
 
-                  <Form.Item
-                    name="remember"
-                    className="aligin-center"
-                    valuePropName="checked"
-                  >
-                    <Switch defaultChecked onChange={onChange} />
-                    Remember me
+                  <Form.Item name="remember" valuePropName="checked">
+                    <Checkbox>
+                      I agree the{" "}
+                      <a href="#pablo" className="font-bold text-dark">
+                        Terms and Conditions
+                      </a>
+                    </Checkbox>
                   </Form.Item>
 
                   <Form.Item>
                     <Button
+                      style={{ width: "100%" }}
                       type="primary"
                       htmlType="submit"
-                      style={{ width: "100%" }}
                     >
-                      SIGN IN
+                      SIGN UP
                     </Button>
                   </Form.Item>
-                  <p className="font-semibold text-muted">
-                    Don't have an account?{" "}
-                    <Link to="/sign-up" className="text-dark font-bold">
-                      Sign Up
+                  <p className="font-semibold text-muted text-center">
+                    Already have an account?{" "}
+                    <Link to="/sign-in" className="font-bold text-dark">
+                      Sign In
                     </Link>
                   </p>
                 </Form>
